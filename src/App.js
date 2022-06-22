@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-
+import React, { useState} from "react";
 import AddUser from "./component/Users/AddUser";
 import UsersList from "./component/Users/UserList";
 
@@ -16,11 +15,13 @@ function App() {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <AddUser onAddUser={addUserHandler} />
       <UsersList users={usersList} />
-    </div> 
+    </React.Fragment> 
   );
 }
 
 export default App;
+
+//React.Fragment :- an alternative of wrapper div

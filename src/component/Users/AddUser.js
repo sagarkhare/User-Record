@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useRef} from "react";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import classes from "./AddUser.module.css";
 import ErrorModal from "../UI/ErrorModal";
+import Wrapper from "../Helpers/Wrapper";
 
 const AddUser = (props) => {
+  // const nameInputRef = useRef();
+  // const ageInputRef = useRef();
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
   const [error, setError] = useState();
 
   const addUserHandler = (event) => {
+    // console.log(nameInputRef.current.value);   It can be used if we do not want to use useState(which re-renders every time on pressing key)
     event.preventDefault();
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       setError({
@@ -43,7 +47,8 @@ const AddUser = (props) => {
     setError(null);
   };
   return (
-    <div>
+    // <div>
+    <Wrapper>
       {error && (
         <ErrorModal
           title={error.title}
@@ -59,6 +64,7 @@ const AddUser = (props) => {
             type="text"
             value={enteredUsername}
             onChange={usernameChangeHandler}
+            // ref={nameInputRef}
           />
           <label htmlFor="age">Age (Years)</label>
           <input
@@ -66,11 +72,13 @@ const AddUser = (props) => {
             type="number"
             value={enteredAge}
             onChange={ageChangeHandler}
+            // ref={ageInputRef}   ref if used to pass the DOM element in which it is used(here input)
           />
           <Button type="submit">Add User</Button>
         </form>
       </Card>
-    </div>
+    </Wrapper>
+    // </div>
   );
 };
 
